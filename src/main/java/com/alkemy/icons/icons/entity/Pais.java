@@ -11,13 +11,12 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name= "pais")
 @Getter
 @Setter
 
-public class PaisEntity {
+public class Pais {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     
     private Long id;
     
@@ -30,10 +29,10 @@ public class PaisEntity {
     
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "continente_id", insertable = false, updatable = false)
-    private ContinenteEntity continente;
+    private Continente continente;
     
-    @Column(name = "continente_id", nullable = false)
-    private Long continenteId;
+    /*@Column(name = "continente_id", nullable = false)
+    private Long continenteId;*/
     
     @ManyToMany(
             cascade = {
@@ -45,6 +44,6 @@ public class PaisEntity {
             name ="icon-pais",
             joinColumns = @JoinColumn(name = "pais_id"),
             inverseJoinColumns = @JoinColumn(name = "icon_id"))
-    private Set<iconEntity> icons = new HashSet<>();
+    private Set<Icon> icons = new HashSet<>();
    
 }

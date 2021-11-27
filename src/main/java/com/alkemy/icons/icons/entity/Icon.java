@@ -14,13 +14,12 @@ import javax.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
-@Table(name= "icon")
 @Getter
 @Setter
 
-public class iconEntity {
+public class Icon {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     
     private Long id;
 
@@ -37,5 +36,5 @@ public class iconEntity {
     private String historia;
     
     @ManyToMany(mappedBy = "icons", cascade = CascadeType.ALL)
-    private List<PaisEntity> paises = new ArrayList<>();
+    private List<Pais> paises = new ArrayList<>();
 }

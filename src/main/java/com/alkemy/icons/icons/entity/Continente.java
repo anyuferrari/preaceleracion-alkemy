@@ -9,13 +9,12 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name= "continente")
 @Getter
 @Setter
 
-public class ContinenteEntity {
+public class Continente {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     
     private String imagen;
