@@ -5,6 +5,8 @@ import com.alkemy.icons.icons.entity.Continente;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.List;
+
 
 @Getter
 @Setter
@@ -13,5 +15,7 @@ public class PaisDTO {
     private String imagen;
     private Long cantidadHabitantes;
     private Long superficie;
+    private Long continenteId;
     private Continente continente;
+    private List<IconsDTO> icons;
 }

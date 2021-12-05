@@ -1,11 +1,13 @@
 
 package com.alkemy.icons.icons.entity;
-import java.util.HashSet;
-import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Getter
@@ -24,23 +26,24 @@ public class Pais {
     
     private Long superficie; //en metros cuadrados
     
-    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "continente_id", insertable = false, updatable = false)
+    @ManyToOne()
+    @JoinColumn(name = "continente_id")
     private Continente continente;
-    
-    /*@Column(name = "continente_id", nullable = false)
-    private Long continenteId;*/
     
     @ManyToMany(
             cascade = {
                 CascadeType.PERSIST,
                 CascadeType.MERGE
-            })   
+            })
     
     @JoinTable(
-            name ="icon-pais",
-            joinColumns = @JoinColumn(name = "pais_id"),
-            inverseJoinColumns = @JoinColumn(name = "icon_id"))
-    private Set<Icon> icons = new HashSet<>();
-   
+            name ="icon_pais",
+            joinColumns = {@JoinColumn(name = "pais_id")},
+            inverseJoinColumns = {@JoinColumn(name = "icon_id")}    )
+
+    @JsonIgnore
+    private List<Icon> icons = new ArrayList<>();
+
+    public void addIcon(Icon icon) { this.icons.add(icon);}
+
 }

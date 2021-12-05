@@ -1,18 +1,22 @@
 
 package com.alkemy.icons.icons.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import lombok.Getter;
-import lombok.Setter;
-
-import javax.persistence.*;
-import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Getter
 @Setter
+@SQLDelete(sql = "UPDATE icon SET deleted = true WHERE id=?")
+@Where(clause = "deleted = false")
 
 public class Icon {
     @Id
@@ -32,6 +36,12 @@ public class Icon {
     
     private String historia;
     
+    private boolean deleted = Boolean.FALSE;
+    
     @ManyToMany(mappedBy = "icons", cascade = CascadeType.ALL)
     private List<Pais> paises = new ArrayList<>();
+
+
+    public void addPais(Pais pais){this.paises.add(pais);}
+    public void removePais(Pais pais){this.paises.remove(pais);}
 }

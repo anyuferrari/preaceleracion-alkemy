@@ -1,10 +1,10 @@
 package com.alkemy.icons.icons.dto;
 
-import com.alkemy.icons.icons.entity.Pais;
-import java.time.LocalDate;
-import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -15,6 +15,5 @@ public class IconsDTO {
     LocalDate fechaCreacion;
     Long altura;
     String historia;
-    List<Pais> paises;
-    
+    List<PaisDTO> paises;
 }
